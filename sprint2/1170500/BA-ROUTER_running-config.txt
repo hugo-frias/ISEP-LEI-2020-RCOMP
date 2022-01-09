@@ -1,0 +1,101 @@
+!
+version 12.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.260
+ encapsulation dot1Q 260
+ ip address 10.166.113.60 255.255.255.192
+!
+interface FastEthernet0/0.261
+ encapsulation dot1Q 261
+ ip address 10.166.113.120 255.255.255.192
+!
+interface FastEthernet0/0.262
+ encapsulation dot1Q 262
+ ip address 10.166.113.150 255.255.255.224
+!
+interface FastEthernet0/0.263
+ encapsulation dot1Q 263
+ ip address 10.166.112.250 255.255.255.128
+!
+interface FastEthernet0/0.264
+ encapsulation dot1Q 264
+ ip address 10.166.113.180 255.255.255.224
+!
+interface FastEthernet0/0.265
+ encapsulation dot1Q 265
+ ip address 10.166.112.1 255.255.255.128
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router rip
+!
+ip classless
+ip route 10.166.116.0 255.255.252.0 10.166.112.2 
+ip route 10.166.120.0 255.255.252.0 10.166.112.3 
+ip route 10.166.124.0 255.255.252.0 10.166.112.4 
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+

@@ -1,0 +1,169 @@
+!
+version 12.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+ip dhcp excluded-address 10.166.113.60
+ip dhcp excluded-address 10.166.113.120
+ip dhcp excluded-address 10.166.113.150
+ip dhcp excluded-address 10.166.113.180
+!
+ip dhcp pool NET_PISO1
+ network 10.166.113.64 255.255.255.192
+ default-router 10.166.113.120
+ dns-server 10.166.112.254
+ domain-name rcomp-19-20-de-g2
+ip dhcp pool NET_LAPTOP
+ network 10.166.113.128 255.255.255.224
+ default-router 10.166.113.150
+ dns-server 10.166.112.254
+ domain-name rcomp-19-20-de-g2
+ip dhcp pool NET_VOPHONE
+ network 10.166.113.160 255.255.255.224
+ default-router 10.166.113.180
+ option 150 ip 10.166.113.180
+ dns-server 10.166.112.254
+ domain-name rcomp-19-20-de-g2
+ip dhcp pool NET_PISO0
+ network 10.166.113.0 255.255.255.192
+ default-router 10.166.113.60
+ dns-server 10.166.112.254
+ domain-name rcomp-19-20-de-g2
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.260
+ encapsulation dot1Q 260
+ ip address 10.166.113.60 255.255.255.192
+!
+interface FastEthernet0/0.261
+ encapsulation dot1Q 261
+ ip address 10.166.113.120 255.255.255.192
+!
+interface FastEthernet0/0.262
+ encapsulation dot1Q 262
+ ip address 10.166.113.150 255.255.255.224
+!
+interface FastEthernet0/0.263
+ encapsulation dot1Q 263
+ ip address 10.166.112.250 255.255.255.128
+!
+interface FastEthernet0/0.264
+ encapsulation dot1Q 264
+ ip address 10.166.113.180 255.255.255.224
+!
+interface FastEthernet0/0.265
+ encapsulation dot1Q 265
+ ip address 10.166.112.1 255.255.255.128
+ ip nat outside
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ log-adjacency-changes
+ network 10.166.112.128 0.0.0.1 area 1
+ network 10.166.112.0 0.0.0.127 area 0
+!
+router rip
+!
+ip nat inside source static tcp 10.166.112.253 443 10.166.112.1 8080 
+ip nat inside source static tcp 10.166.112.253 80 10.166.112.1 8079 
+ip nat inside source static tcp 10.166.112.254 53 10.166.112.1 8081 
+ip nat inside source static udp 10.166.112.254 53 10.166.112.1 8082 
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+dial-peer voice 1 voip
+ destination-pattern 3192
+ session target ipv4:10.166.117.70
+!
+dial-peer voice 2 voip
+ destination-pattern 3193
+ session target ipv4:10.166.121.129
+!
+dial-peer voice 3 voip
+ destination-pattern 3194
+ session target ipv4:10.166.125.193
+!
+telephony-service
+ max-ephones 20
+ max-dn 20
+ ip source-address 10.166.113.180 port 2000
+ auto assign 1 to 2
+!
+ephone-dn 1
+ number 319101
+!
+ephone-dn 2
+ number 319102
+!
+ephone 1
+ device-security-mode none
+ mac-address 0002.17C0.3DDC
+ type 7960
+ button 1:1
+!
+ephone 2
+ device-security-mode none
+ mac-address 000C.8516.0C9E
+ type 7960
+ button 1:2
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
