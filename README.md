@@ -1,13 +1,14 @@
 # ISEP-LEI-2020-RCOMP
  
-# 1. Team members #
-  * 1170500 - Hugo Pinto 
-  * 1180730 - Vera Pinto 
-  * 1180782 - Diogo Ribeiro 
-  * 1181628 - André Novo  
+Versão final do projeto desenvolvido para a unidade curricular	Redes de Computadores (_RCOMP_) que faz parte do 2º ano, 2º semestre da [Licenciatura em Engenharia Informática no ISEP](https://www.isep.ipp.pt/Course/Course/26).
 
-# 2. Sprints #
-  * [Sprint 1](doc/sprint1/)
-  * [Sprint 2](doc/sprint2/)
-  * [Sprint 3](doc/sprint3/)
+Neste projeto foi-nos pedido o desenvolvimento de um projeto no Cisco Packet Tracer relacionado com redes.
+Neste repositório estão presentes os enunciados e os ficheiros .pkt.
 
+# Grupo de Trabalho
+
+Este projeto foi desenvolvido por um grupo com os seguintes elementos:
+- André Novo
+- Diogo Ribeiro
+- Hugo Frias
+- Vera Pinto
